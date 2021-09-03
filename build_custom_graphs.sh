@@ -24,6 +24,8 @@ cp -f "$mp_pose_dir/graphs/BUILD" "mediapipe/modules/face_landmark/BUILD"
 # build all binarypbs
 echo "build..."
 bazel build -c opt --define MEDIAPIPE_DISABLE_GPU=1 --copt -DMESA_EGL_NO_X11_HEADERS --copt -DEGL_NO_X11 mediapipe/modules/face_landmark:face_landmark_front_with_geometry_cpu
+bazel build -c opt --define MEDIAPIPE_DISABLE_GPU=1 --copt -DMESA_EGL_NO_X11_HEADERS --copt -DEGL_NO_X11 mediapipe/modules/face_geometry/data:geometry_pipeline_metadata_landmarks
+bazel build -c opt --define MEDIAPIPE_DISABLE_GPU=1 --copt -DMESA_EGL_NO_X11_HEADERS --copt -DEGL_NO_X11 mediapipe/modules/face_geometry/data:geometry_pipeline_metadata_detection
 popd
 
 # check error
