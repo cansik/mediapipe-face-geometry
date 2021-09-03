@@ -1,0 +1,6 @@
+
+qBeginLoopDetectionCalculatorITERABLE:multi_face_detection"ITEM:face_detection"BATCH_END:detection_timestamp
+TDetectionToLandmarksCalculatorDETECTION:face_detection"LANDMARKS:face_landmarks
+‚-EndLoopNormalizedLandmarkListVectorCalculatorITEM:face_landmarksBATCH_END:detection_timestamp"ITERABLE:multi_face_landmarks
+€FaceGeometryPipelineCalculatorIMAGE_SIZE:image_size)MULTI_FACE_LANDMARKS:multi_face_landmarks"'MULTI_FACE_GEOMETRY:multi_face_geometry*ENVIRONMENT:environment:Z¢ÏåÒ	T
+Rmediapipe/modules/face_geometry/data/geometry_pipeline_metadata_detection.binarypbRIMAGE_SIZE:image_sizeR)MULTI_FACE_DETECTION:multi_face_detectionz'MULTI_FACE_GEOMETRY:multi_face_geometry‚ENVIRONMENT:environment¢FaceGeometryFromDetection

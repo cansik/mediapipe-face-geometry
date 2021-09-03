@@ -54,6 +54,10 @@ mediapipe_simple_subgraph(
         "//mediapipe/calculators/image:image_properties_calculator",
         "//mediapipe/calculators/util:association_norm_rect_calculator",
         "//mediapipe/calculators/util:collection_has_min_size_calculator",
+
+        "//mediapipe/modules/face_geometry/data:geometry_pipeline_metadata_landmarks"
+        "//mediapipe/modules/face_geometry/data:geometry_pipeline_metadata_detection"
+        "//mediapipe/modules/face_geometry:env_generator_calculator",
         "//mediapipe/modules/face_detection:face_detection_short_range_cpu",
     ],
 )

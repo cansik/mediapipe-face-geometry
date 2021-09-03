@@ -36,6 +36,9 @@ fi
 echo "copy binarypb back..."
 pushd "$mediapipe_dir/bazel-bin/mediapipe/modules"
 cp -f face_landmark/*.binarypb "$mp_pose_dir/mediapipe/modules/face_landmark"
+cp -f face_detection/*.binarypb "$mp_pose_dir/mediapipe/modules/face_detection"
+cp -f face_geometry/*.binarypb "$mp_pose_dir/mediapipe/modules/face_geometry"
+cp -f face_geometry/data/*.binarypb "$mp_pose_dir/mediapipe/modules/face_geometry/data"
 popd
 
 echo "done!"

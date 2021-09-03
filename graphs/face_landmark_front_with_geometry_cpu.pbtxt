@@ -34,6 +34,8 @@ input_side_packet: "NUM_FACES:num_faces"
 # this packet so that they don't wait for it unnecessarily.
 output_stream: "LANDMARKS:multi_face_landmarks"
 
+output_stream: "MULTI_FACE_GEOMETRY:multi_face_geometry"
+
 # Extra outputs (for debugging, for instance).
 # Detected faces. (std::vector<Detection>)
 output_stream: "DETECTIONS:face_detections"
@@ -206,6 +208,32 @@ node {
   input_stream: "ITEM:face_landmarks"
   input_stream: "BATCH_END:landmarks_loop_end_timestamp"
   output_stream: "ITERABLE:multi_face_landmarks"
+}
+
+# Generates an environment that describes the current virtual scene.
+node {
+  calculator: "FaceGeometryEnvGeneratorCalculator"
+  output_side_packet: "ENVIRONMENT:environment"
+  node_options: {
+    [type.googleapis.com/mediapipe.FaceGeometryEnvGeneratorCalculatorOptions] {
+      environment: {
+        origin_point_location: TOP_LEFT_CORNER
+        perspective_camera: {
+          vertical_fov_degrees: 63.0  # 63 degrees
+          near: 1.0  # 1cm
+          far: 10000.0  # 100m
+        }
+      }
+    }
+  }
+}
+
+node {
+  calculator: "FaceGeometryFromLandmarks"
+  input_stream: "IMAGE_SIZE:image_size"
+  input_stream: "MULTI_FACE_LANDMARKS:multi_face_landmarks"
+  input_side_packet: "ENVIRONMENT:environment"
+  output_stream: "MULTI_FACE_GEOMETRY:multi_face_geometry"
 }
 
 # Collects a NormalizedRect for each face into a vector. Upon receiving the
