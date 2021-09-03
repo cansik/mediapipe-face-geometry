@@ -9,9 +9,7 @@ mp_face_mesh = mp.solutions.face_mesh
 drawing_spec = mp_drawing.DrawingSpec(thickness=1, circle_radius=1)
 cap = cv2.VideoCapture("media/video-480.mov")
 
-face_mesh = FaceLandmarkFrontWithGeometry(
-    min_detection_confidence=0.5,
-    min_tracking_confidence=0.5)
+face_mesh = FaceLandmarkFrontWithGeometry()
 
 while cap.isOpened():
     success, image = cap.read()
