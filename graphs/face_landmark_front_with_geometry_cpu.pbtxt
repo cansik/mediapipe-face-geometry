@@ -34,6 +34,8 @@ input_side_packet: "NUM_FACES:num_faces"
 # this packet so that they don't wait for it unnecessarily.
 output_stream: "LANDMARKS:multi_face_landmarks"
 
+# A list of geometry data for each detected face.
+# (std::vector<face_geometry::FaceGeometry>)
 output_stream: "MULTI_FACE_GEOMETRY:multi_face_geometry"
 
 # Extra outputs (for debugging, for instance).

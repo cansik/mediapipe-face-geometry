@@ -38,6 +38,10 @@ while cap.isOpened():
                 landmark_drawing_spec=drawing_spec,
                 connection_drawing_spec=drawing_spec)
 
+    if results.multi_face_geometry:
+        for geometry in results.multi_face_geometry:
+            print(geometry)
+
     cv2.imshow('MediaPipe FaceMesh', image)
     if cv2.waitKey(5) & 0xFF == 27:
         break

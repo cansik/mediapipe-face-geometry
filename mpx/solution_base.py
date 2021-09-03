@@ -404,10 +404,19 @@ class SolutionBase:
             output_streams = canonical_graph_config_proto.output_stream
         else:
             output_streams = outputs
+
+        output_streams.remove("MULTI_FACE_GEOMETRY:multi_face_geometry")
+        print(f"Output Streams: {output_streams}")
+
         self._output_stream_type_info = {
-            get_name(tag_index_name): get_stream_packet_type(tag_index_name)
-            for tag_index_name in output_streams
+            get_name(tag_index_name): get_stream_packet_type(tag_index_name) for tag_index_name in output_streams
         }
+
+        self._output_stream_type_info.update({
+            "multi_face_geometry": _PacketDataType.PROTO_LIST
+        })
+
+        print(f"Output Streams Type Info: {self._output_stream_type_info}")
 
         # Gets the packet type information of the input side packets from the
         # validated calculator graph. The mappings from the side packet names to the

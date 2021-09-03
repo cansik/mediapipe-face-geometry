@@ -20,7 +20,10 @@ from mediapipe.calculators.util import logic_calculator_pb2
 from mediapipe.calculators.util import non_max_suppression_calculator_pb2
 from mediapipe.calculators.util import rect_transformation_calculator_pb2
 from mediapipe.calculators.util import thresholding_calculator_pb2
+
+# has to be added here
 from mediapipe.modules.face_geometry import geometry_pipeline_calculator_pb2
+from mediapipe.modules.face_geometry.protos import face_geometry_pb2
 # pylint: enable=unused-import
 
 # pylint: enable=unused-import
@@ -49,8 +52,8 @@ class FaceLandmarkFrontWithGeometry(SolutionBase):
                 ],
                 # 'facedetectionshortrangecpu__TensorsToDetectionsCalculator.min_score_thresh': min_detection_confidence,
                 'facelandmarkcpu__ThresholdingCalculator.threshold': min_tracking_confidence,
-            },
-            outputs=['multi_face_landmarks'])
+            })
+            # outputs=['multi_face_landmarks', 'multi_face_geometry'])
 
     def process(self, image: np.ndarray) -> NamedTuple:
         results = super().process(input_data={'image': image})
