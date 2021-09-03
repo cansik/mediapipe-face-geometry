@@ -1,2 +1,4 @@
 .idea
 *.pyc
+media
+config.sh
