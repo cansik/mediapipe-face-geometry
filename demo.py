@@ -40,7 +40,7 @@ while cap.isOpened():
 
     if results.multi_face_geometry:
         for geometry in results.multi_face_geometry:
-            print(geometry)
+            print(geometry.pose_transform_matrix)
 
     cv2.imshow('MediaPipe FaceMesh', image)
     if cv2.waitKey(5) & 0xFF == 27:

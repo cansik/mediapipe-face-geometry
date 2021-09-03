@@ -56,6 +56,7 @@ mediapipe_simple_subgraph(
         "//mediapipe/calculators/util:collection_has_min_size_calculator",
 
         "//mediapipe/modules/face_geometry:env_generator_calculator",
+        "//mediapipe/modules/face_geometry:geometry_pipeline_calculator",
         "//mediapipe/modules/face_detection:face_detection_short_range_cpu",
     ],
 )
