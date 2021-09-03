@@ -4,7 +4,9 @@
 mediapipe_dir=""
 mp_pose_dir=""
 
-source config.sh
+if test -f "config.sh"; then
+    source config.sh
+fi
 
 pushd () {
     command pushd "$@" > /dev/null
