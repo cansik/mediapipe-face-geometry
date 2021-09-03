@@ -78,7 +78,7 @@ cc_library(
         "//mediapipe/modules/pose_landmark:pose_landmark_cpu",
         "//mediapipe/modules/selfie_segmentation:selfie_segmentation_cpu",
 
-	"//mediapipe/modules/face_geometry:env_generator_calculator",
+	    "//mediapipe/modules/face_geometry:env_generator_calculator",
         "//mediapipe/modules/face_geometry:face_geometry_from_landmarks",
         "//mediapipe/modules/face_geometry:face_geometry_from_detection",
     ],
