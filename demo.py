@@ -1,8 +1,35 @@
+from typing import List
+
 import cv2
 import numpy as np
 
 import mediapipe as mp
 from mpx.face_landmark_with_geometry import FaceLandmarkFrontWithGeometry
+
+
+def get_center(landmarks, vertices: List[int]):
+    xs = []
+    ys = []
+
+    for i in vertices:
+        p = landmarks.landmark[i]
+        xs.append(p.x)
+        ys.append(p.y)
+
+    return sum(xs) / len(vertices), sum(ys) / len(vertices)
+
+
+def display_3d_line(mat, center, length, w, h):
+    p = np.asarray([0, 0, length])
+    pp = p.dot(pose_mat[:3, :3])
+
+    x = (pp[0] + center[0]) * w
+    y = (-pp[1] + center[1]) * h
+
+    cv2.line(image, (round(center[0] * w), round(center[1] * h)),
+             (round(x), round(y)),
+             color=(255, 0, 255), thickness=2)
+
 
 mp_drawing = mp.solutions.drawing_utils
 mp_face_mesh = mp.solutions.face_mesh
@@ -47,17 +74,11 @@ while cap.isOpened():
             pose_mat = np.asarray(raw_mat.packed_data).reshape(raw_mat.cols, raw_mat.rows)
             h, w = image.shape[:2]
 
-            p = np.asarray([0, 0, 0.2])
-            pp = p.dot(pose_mat[:3, :3])
+            left_eye = get_center(results.multi_face_landmarks[i], [145, 159])
+            right_eye = get_center(results.multi_face_landmarks[i], [374, 386])
 
-            center = results.multi_face_landmarks[i].landmark[1]
-
-            x = (pp[0] + center.x) * w
-            y = (-pp[1] + center.y) * h
-
-            cv2.line(image, (round(center.x * w), round(center.y * h)),
-                     (round(x), round(y)),
-                     color=(255, 0, 255), thickness=2)
+            display_3d_line(pose_mat, left_eye, 0.2, w, h)
+            display_3d_line(pose_mat, right_eye, 0.2, w, h)
 
     cv2.imshow('MediaPipe FaceMesh', image)
     if cv2.waitKey(20) & 0xFF == 27:
