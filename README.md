@@ -1,4 +1,7 @@
 # MediaPipe Face Geometry Example
+
+🎉 **Please Note:** If you are interested in a pre-built and ready to use solution, head over to our new repository called [mediapipe-extended](https://github.com/cansik/mediapipe-extended).
+
 A simple example showing how to extract the facial geometry information from the detection of facial features in mediapipe. The pre-built Python module does not contain all the necessary binaries to perform the face geometry calculations. Therefore, we adapted the Python BUILD file to integrate them.
 
 ![demo-image](https://user-images.githubusercontent.com/5220162/136761571-fca4b8ba-b55b-4683-8504-3bc78411a6ea.gif)
